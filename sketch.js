@@ -31,7 +31,7 @@ const createCircles = () => {
 
   // Brightness transition logic
   if (p <=1 ) {
-    p += 0.02;
+    p += 0.1;
   } else {
     brightness = newBrightness
     newBrightness = Math.random();
@@ -50,10 +50,11 @@ const createCircles = () => {
 
 
 class glowCircle {
-  constructor(x, y, size) {
+  constructor(x, y, size, glowing = false) {
     this._x = x;
     this._y = y;
     this._size = size;
+    this._glowing = glowing;
     //this._color = color;
   }
 
@@ -63,6 +64,16 @@ class glowCircle {
 
   set y (y) {
     this._y = y;
+  }
+
+  set size (size) {
+    this._size = size;
+  }
+
+  set glowing (bool) {
+    if (typeof bool === 'boolean') {
+      this._glowing = bool;
+    }
   }
 
   changeColor() {
