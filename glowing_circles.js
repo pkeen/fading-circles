@@ -1,4 +1,4 @@
-const fr = 25;
+// const fr = 25;
 
 class Background {
     constructor(
@@ -100,6 +100,7 @@ class GlowCircle extends Background {
 
 }
 
+/*
 const bg = new Background();
 
 function setup() {
@@ -120,3 +121,6 @@ function draw() {
     bg.drawCircles();
 
 }
+*/
+
+export { Background , GlowCircle };

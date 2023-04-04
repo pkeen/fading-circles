@@ -1,108 +1,35 @@
+// import { Background, GlowCircle } from "./glowing_circles.js";
+
+import { Background } from "./glowing_circles.js";
+
 const fr = 30;
 
-let brightness;
-let newBrightness;
-let p = 0;
-
-
-let x = 0;
-
-let hue = 0;
-
-
+const bg = new Background();
 
 function setup() {
-    createCanvas(window.innerWidth, window.innerHeight);
+  // Create the canvas fullscreen size
+  createCanvas(window.innerWidth, window.innerHeight);
 
-    frameRate(fr);
-    
-    ellipseMode(CORNER);
+  frameRate(fr);
 
-    brightness = 0;
-    newBrightness = 1;
+  bg.drawBackground();
 
-}
-
-const createCircles = () => {
-
-  ellipseMode(CORNER);
-  colorMode(HSL);
-  noStroke();
-
-  // Brightness transition logic
-  if (p <=1 ) {
-    p += 0.1;
-  } else {
-    brightness = newBrightness
-    newBrightness = Math.random();
-    p = 0;
-  }
-
-  inter = lerp(brightness, newBrightness, p);
-
-  for (let i = 0; i < window.innerHeight; i+=50) {
-    for(let j = 0; j < window.innerWidth; j+=50) {
-      fill(360, 0, 100, inter);
-      ellipse(j, i, 50, 50); 
-    } 
-  }
-}
-
-
-class glowCircle {
-  constructor(x, y, size, glowing = false) {
-    this._x = x;
-    this._y = y;
-    this._size = size;
-    this._glowing = glowing;
-    //this._color = color;
-  }
-
-  set x (x) {
-    this._x = x;
-  }
-
-  set y (y) {
-    this._y = y;
-  }
-
-  set size (size) {
-    this._size = size;
-  }
-
-  set glowing (bool) {
-    if (typeof bool === 'boolean') {
-      this._glowing = bool;
-    }
-  }
-
-  changeColor() {
-    this._hue = Math.random() * 360;
-  }
-
-  drawCircle() {
-    ellipse(this._x, this._y, this._size, this._size);
-  }
-
-};
-
+  bg.createCircles();
   
+}
+
 function draw() {
- 
-  colorMode(HSL);
-  background(color(223, 100, 72, 1));
 
-  /*
-  let circleA = new glowCircle(x, 200, 200);
-  circleA.drawCircle();
+  background(210);
 
-  x += 1;
-  //createCircles();
+  ellipse(200, 200, 200, 200);
 
-  */
+  bg.drawBackground();
+  bg.drawCircles();
 
-  createCircles();
-  
-  
 }
-  
+
+// For some reason I had to add this to make it work
+// see: https://forum.processing.org/two/discussion/24662/script-type-module-draw-and-setup-not-working.html
+window.setup = setup;
+window.draw = draw;
