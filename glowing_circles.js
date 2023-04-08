@@ -100,27 +100,4 @@ class GlowCircle extends Background {
 
 }
 
-/*
-const bg = new Background();
-
-function setup() {
-    // Create the canvas fullscreen size
-    createCanvas(window.innerWidth, window.innerHeight);
-
-    frameRate(fr);
-
-    bg.drawBackground();
-
-    bg.createCircles();
-    
-}
-
-function draw() {
-
-    bg.drawBackground();
-    bg.drawCircles();
-
-}
-*/
-
 export { Background , GlowCircle };
